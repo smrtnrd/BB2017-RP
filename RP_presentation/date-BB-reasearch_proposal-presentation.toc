@@ -1,6 +1,0 @@
-\beamer@endinputifotherversion {3.36pt}
-\beamer@sectionintoc {1}{Background}{3}{0}{1}
-\beamer@subsectionintoc {1}{1}{Influenza forecasting methods}{3}{0}{1}
-\beamer@subsectionintoc {1}{2}{Deep Learning}{5}{0}{1}
-\beamer@sectionintoc {2}{Second Main Section}{13}{0}{2}
-\beamer@subsectionintoc {2}{1}{Another Subsection}{13}{0}{2}
