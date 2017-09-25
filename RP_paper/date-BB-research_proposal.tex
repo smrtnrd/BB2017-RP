@@ -37,6 +37,9 @@ defernumbers=true
 \frenchspacing % only one space between sentences
 
 
+\usepackage{lineno} %add number to every line
+\linenumbers
+
 \addbibresource{bib-influenza.bib}
 
 \begin{document}
@@ -63,9 +66,7 @@ defernumbers=true
 \newpage
 
 \section{Introduction}
-Influenza is a recurrent public health problem. The virus infects approximately $5\%$ of the global adult population and $20\%$ of children every year causing respiratory illness and complications\autocite{Ting2017}. In Canada, the total cost of each influenza season is estimated to 1 billion per year\autocite{Molinari2007}. 
-
-Virus re-assortment (i.e. mixing of gene segments of multiple viruses) and the accumulation of mutations contribute to the emergence of new influenza virus variants. However, most of these variants do not have the ability to spread among humans and subsequently cause a pandemic. Hence, Immunization programs have been developed by public health agencies and government to reduce the effects of the circulating strains by preventing infection and widespread transmission\autocite{Jefferson2005}. 
+Influenza is a recurrent public health problem. The virus infects approximately $5\%$ of the global adult population and $20\%$ of children every year causing respiratory illness and complications\autocite{Ting2017}. In Canada, the total cost of each influenza season is estimated to 1 billion per year\autocite{Molinari2007}. In additon, new influenza variants arise every year due to virus re-assortment (i.e. mixing of genetic material) and the accumulation of mutations. Nevertheless, most of these variants are not harmfull to human population. As a result, public health agencies and government set up preventive programs  to restrain infection and widespread transmission of circulating strains\autocite{Jefferson2005}.In order to complete this task, 
 
 This research leverage the technology advances in computing power, machine-learning and the abundance of data on influenza epidemiology and genetic, climate and human mobility, in order to utilize new class of machine learning methods named deep learning (DL) , to predict potential epidemic areas worldwide.
 
@@ -73,7 +74,7 @@ This research leverage the technology advances in computing power, machine-learn
 
 \subsection{Influenza forecasting method}
 
-In the recent years, several  methods to forecast influenza outbreak have been reported\autocite{nsoesie2014}. Time-series models are among the most popular, especially  autoregressive integrated moving average (ARIMA) models. The ARIMA models assume that future values can be predicted based on past observations\autocite{quenel1998}. The ARIMA models is capable of capturing trend and periodic changes relationship. However, influenza activity varies from season to season, an outbreak can occur off-season. In an attempt to account for this type of irregularities, methods of analogs borrow forecasting approach in meteorology. These methods match current influenza patterns to patterns of historical outbreaks\autocite{viboud2003}. Although, they perform better than ARIMA models these models are limited on the sensitivity to forecasts and the difficulty to find patterns due to the irregularity of historical outbreaks. Compartmental models include the effect of human behaviour by dividing the population into sub-populations according to the state of the disease and defining the rate at which individuals move between sub-populations. Although the model present simple and well studied behaviour it fails to capture the differences in contact patterns for different age groups and environments\autocite{degli2008}. More complex model such as agent-based models study global behavior related to interactions of defined individual entities (agents) within a define environment \autocite{carrasco2013}. In contrast, metapopulation models divide populations in separated and discrete habitat areas and sub-populations, where populations interact through migration. The model describes the dynamics within areas, trough define disease states, and uses mobility networks to simulate the diffusion patterns of an ongoing epidemic. Agent based models and metapopulation models have been used to evaluate the effectiveness of various measures for controlling influenza epidemics. The main constrains of these models are the lack of empiric evidence to justify the modeling suppositions and defining parameters\autocite{nsoesie2014}.
+In the recent years, several  methods to forecast influenza outbreak have been reported\autocite{nsoesie2014}. Time-series models are among the most popular, especially  autoregressive integrated moving average (ARIMA) models. The ARIMA models assume that future values can be predicted based on past observations\autocite{quenel1998}. The ARIMA models is capable of capturing trend and periodic changes relationship. However, influenza activity varies from season to season, outbreaks can occur off-season. In an attempt to account for this type of irregularities, methods of analogs match current influenza patterns to patterns of historical outbreaks\autocite{viboud2003}. Although, they perform better than ARIMA models, these models are limited to the sensitivity to forecasts and the difficulty to find patterns due to the irregularity of historical outbreaks. Compartmental models include the effect of human behaviour by dividing the population into sub-populations according to the state of the disease and defining the rate at which individuals move between sub-populations. Although the model present simple and well studied behaviour it fails to capture the differences in contact patterns for different age groups and environments\autocite{degli2008}. More complex model such as agent-based models study global behavior related to interactions of defined individual entities (agents) within a define environment \autocite{carrasco2013}. In contrast, metapopulation models divide populations in separated and discrete habitat areas and sub-populations, where populations interact through migration. The model describes the dynamics within areas, trough define disease states, and uses mobility networks to simulate the diffusion patterns of an ongoing epidemic. Agent based models and metapopulation models have been used to evaluate the effectiveness of various measures for controlling influenza epidemics. The main constrains of these models are the lack of empiric evidence to justify the modeling suppositions and defining parameters\autocite{nsoesie2014}.
 
 
 \subsection{Deep Learning and influenza}
@@ -132,7 +133,7 @@ We are going to implement the architecture of our neural network using Tensorflo
 
 To train our neural network, we perform cross-validation methods. The data is randomly split into 3 types of set: (i) training set to adjust the weights trough gradient descent; (ii) validation set to tune the hyperparameters such as the initial learning rate, learning rate decay or regularization strength (Loss function); (iii) test set to assess the performance of the data, such as the accuracy, precision and the sensitivity. 
 
-\section{Time Plan}
+\section{Timeline}
 
 \begin{figure}[h]
     \centering
