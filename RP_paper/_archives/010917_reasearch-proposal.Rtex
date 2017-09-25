@@ -1,0 +1,144 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{titlesec}
+\usepackage{graphicx}
+ 
+
+\usepackage{setspace}
+\doublespacing
+
+\title{Research proposal: Deep learning approaches for forecasting the global spread influenza  }
+\author{Berthin Bitja}
+\date{ 30/08/17}
+
+\usepackage[
+style=nature,
+date=year,
+backend=biber,
+natbib=true,
+doi=false,
+defernumbers=true
+]{biblatex}
+
+\addbibresource{bib-influenza.bib}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Background}
+Influenza is a recurrent public health problem. The virus infects approximately 5 to 10 \% of the global adult population and 20 to 30 \% of children every year causing respiratory illness and complications  \cite{Eu2010}. In Canada, the total cost of each influenza season is estimated to 1 billion per year  \cite{MOLINARI20075086}. Virus re-assortment (i.e. mixing of gene segments of multiple viruses) and the accumulation of mutations contribute to the emergence of new influenza virus variants. Fortunately, most of these variants do not have the ability to spread among humans and subsequently cause a pandemic. Immunization programs have been developed by public health agencies and government to reduce the effects of the circulating strains by preventing infection and widespread transmission  \cite{Ting_undated-hh}. 
+
+In order for those programs to be efficient the scientific community developed predictive approaches such as time-series models, method of analogs, compartmental models, agent-based models or metapopulation models  \cite{I518}. For instance, “GLEaMviz” is a publicly available software that simulates the spread of emerging human-to-human infectious diseases across the world. The simulation engine  uses a stochastic computational scheme that integrates worldwide high-resolution of human demographic and mobility data to simulate disease spread on the global scale. The detailed mobility networks used in GLEaMviz design enable description of the diffusion pattern of the ongoing epidemic  \cite{Broeck2011}. This model has been used to visualize the geo-temporal evolution of influenza epidemics. One major difficulty in applying these models is the confined assumptions under which they operate, combined with the limitations on the knowledge we have on human behavior.  Although, this model provides insights on influenza spread, producing reliable predictions during an outbreak remains a challenge.
+
+Disease transmission is a complex spatio-temporal process. It includes environment factors such as temperatures, humidity or pressure, genomic information such as the genetic variation between the different strains, and mobility data such as airport traffic. Furthermore, we are processing large datasets. In this context, Deep learning (DL) offers a novel approach to resolve prediction problems by enabling computational models that are composed of multiple processing layers based on neural networks to learn representations of data with multiple levels of abstraction  \cite{LECON20150528, Miotto2017-uy}. Those "black boxes" reduce the need for feature engineering considering that features are learned from data. Despite, being used in various fields such as speech recognition, visual object recognition, object detection, drug discovery and genomics, there are no publicly available tools implementing these algorithms for the forecasting of influenza outbreaks.
+
+\section{Reasearch Question}
+
+The goal of this thesis is to implement a DL system to predict influenza outbreak at the local, regional, national, or global level. This thesis has three aims. The first aim is (i) to design the architecture of a deep neural network integrating mobility data, genomic data and environmental data to predict common epidemic measures \cite{ I518} including locations,  durations, of the different influenza subtypes. The second aim is (ii) to develop a pipeline to automate the process of data retrieval. The final aim is (iii) to assess the overall performance of our design. The motivation of this research is to expand the knowledge on predictive methods based on DL approaches for surveillance and forecasting of infectious diseases and explores the relevance of using DL in application to influenza forecasting. 
+
+\section{Data}
+
+\subsection{Influenza data}
+
+The Influenza Virus Database\autocite{IVD-fb} contains nucleotide sequences of all influenza viruses in the EMBL/DDBJ/GenBank databases\autocite{Benson2012-km}, as well as protein sequences and their encoding regions derived from the nucleotide sequences. The influenza database is updated, usually within a day or two, after new sequences become available or older sequence records are updated in GenBank. BLAST searches are performed for all new sequences against the influenza virus sequences in GenBank to verify critical information such as subtype, segment, and year. Information that is not available in GenBank records is obtained from the literature, through direct contact with sequence submitters, or by sequence analysis whenever possible\autocite{Bao2008-io}.
+
+\subsection{Environmental data}
+
+Global Surface Summary of the Day (GSOD)\autocite{GSOD-iw} data is derived from The Integrated Surface Hourly (ISH) dataset. The ISH dataset gathers global data from the USAF Combat Climatology Center, located in the Federal Climate Complex with the National Climatic Data Center (NCDC).  The earliest data recorded start at 1929. Over 9000, stations' data are typically available. The parameters included in the dataset are: Mean temperature, Mean dew point, Mean sea level pressure, Mean station pressure, Mean visibility, Mean wind speed, Maximum sustained wind speed , Maximum wind gust, Maximum temperature, Minimum temperature, Precipitation amount and Snow depth.
+
+\subsection{Epidemic data}
+FluNet is a global tool for influenza virological surveillance launched in 1997  by WHO's Global Influenza Surveillance and Response System (GISRS). The virological data entered into include the Influenza-Like Country, area or territory, Illness (ILI) activity, time and number of influenza viruses detected by subtype. The data  are publically available and updated weekly by National Influenza Centres (NICs).
+
+\subsection{Mobility data}
+The Bureau of Transportation Statistics provide air traffic data on international market. The database include such as carrier, origin, destination, aircraft type and service class for transported passengers, freight and mail, available capacity, scheduled departures and departures performed. Flights with both origin and destination in a country outside the U.S are not included.
+
+
+\section{Methodology}
+
+To achieve the objectives illustrated in figure \ref{fig:mesh1}, our research is divided into 3 parts: the first part is achieved by creating an architecture that combine Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN). CNN enables us to automatically extract features from the data. RNN is a class of neural network suitable for time series data. By merging the two approaches we hope to obtain a reliable autonomous system, which doesn’t need the features to be designed ahead of time with the ability to have a broader perspective on patterns in the data, thus providing better prediction.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figure-1.png}
+    \caption{ Illustration of the Proposed Methodology}
+    \label{fig:mesh1}
+\end{figure}
+
+The second part is achieved by exploring the different type of datasets. Then, we will create a script to automate the retrieval of data from the public repository. In addition,  CNN takes tensor of intensity as inputs. The way our data is structured won't allow us to automatically extract features from the data. The challenge for this step is often to find a public database that facilitates the access to their data.
+
+Finally, we will design a test harness that we can use to evaluate the performance of our algorithm. We can assess the efficiency of our architecture with test and train datasets our applying cross-validation.
+
+\subsection{Convolutional Neural Networks }
+DCN is a training process where good features could be automatically learned from input data. CNN mainly consists of several parts: 1) the convolution process, where a convolution filter is applied on the input data (in a format of matrix) in order to amplify the feature signal and reduce the noise; 2) the pooling process, which extracts features that represent geographic, mobility, genetic and environmental characteristics during a specific period; and 3) the training and testing process, where the learned features are used as input to predict influenza outbreak.
+
+
+The overall training process of the Convolution Network may be summarized as below:
+
+Step1: We initialize all filters and parameters / weights with random values
+Step2: The network takes a training image as input, goes through the forward propagation step (convolution, ReLU and pooling operations along with forward propagation in the Fully Connected layer) and finds the output probabilities for each class.
+Lets say the output probabilities for the boat image above are [0.2, 0.4, 0.1, 0.3]
+Since weights are randomly assigned for the first training example, output probabilities are also random.
+Step3: Calculate the total error at the output layer (summation over all 4 classes)
+ Total Error = ∑  ½ (target probability – output probability) ²
+Step4: Use Backpropagation to calculate the gradients of the error with respect to all weights in the network and use gradient descent to update all filter values / weights and parameter values to minimize the output error.
+The weights are adjusted in proportion to their contribution to the total error.
+When the same image is input again, output probabilities might now be [0.1, 0.1, 0.7, 0.1], which is closer to the target vector [0, 0, 1, 0].
+This means that the network has learnt to classify this particular image correctly by adjusting its weights / filters such that the output error is reduced.
+Parameters like number of filters, filter sizes, architecture of the network etc. have all been fixed before Step 1 and do not change during training process – only the values of the filter matrix and connection weights get updated.
+Step5: Repeat steps 2-4 with all images in the training set.
+The above steps train the ConvNet – this essentially means that all the weights and parameters of the ConvNet have now been optimized to correctly classify images from the training set.
+
+When a new (unseen) image is input into the ConvNet, the network would go through the forward propagation step and output a probability for each class (for a new image, the output probabilities are calculated using the weights which have been optimized to correctly classify all the previous training examples). If our training set is large enough, the network will (hopefully) generalize well to new images and classify them into correct categories.
+
+\subsection{Recurrent Neural Networks }
+ RNNs are a class type of neural network designed for sequence problems. RNNs are adding feedback and memory to the networks over time. In our architecture it will receive inputs from our CNN that allows the network to learn and generalize across sequences of inputs rather than individual patterns. Predictions are made on a broader pool of past observations and validated with current observations, the process is repeated as the time window moves forward.
+ 
+The fundamental feature of a Recurrent Neural Network (RNN) is that the network contains at least one feed-back connection, so the activations can flow round in a loop. That enables the networks to do temporal processing and learn sequences, e.g., perform sequence recognition/reproduction or temporal association/prediction. Recurrent neural network architectures can have many different forms. One common type consists of a standard Multi-Layer Perceptron (MLP) plus added loops. These can exploit the powerful non-linear mapping capabilities of the MLP, and also have some form of memory. Others have more uniform structures, potentially with every neuron connected to all the others, and may also have stochastic activation functions. For simple architectures and deterministic activation functions, learning can be achieved using similar gradient descent procedures to those leading to the back-propagation algorithm for feed-forward networks. When the activations are stochastic, simulated annealing approaches may be more appropriate. The following will look at a few of the most important types and features of recurrent networks
+
+\subsection{Cross Validation}
+Cross-Validation is a statistical method of evaluating and comparing learning algorithms by dividing data into two segments: one used to learn or train a model and the other used to validate the model. In typical cross-validation, the training and validation sets must cross-over in successive rounds such that each data point has a chance of being validated against. The basic
+form of cross-validation is k-fold cross-validation. Other forms of cross-validation are special cases of k-fold cross-validation or involve repeated rounds of k-fold cross-validation.
+In k-fold cross-validation the data is first partitioned into k equally (or nearly equally) sized segments or folds. Subsequently k iterations of training and validation are performed such that within each iteration a different fold of the data is held-out for validation while the remaining k - 1 folds are used for learning.
+Fig. 1 demonstrates an example with k = 3. The darker section of the data are used for training while the lighter sections are used for validation. In data mining and machine learning 10-fold cross-validation (k = 10) is the most common.
+
+Performance Estimation 
+As previously mentioned, cross-validation can be used to estimate the performance of a learning algorithm. One may be interested in obtaining an estimate for any of the many performance indicators such as accuracy, precision, recall, or F-score. Cross-validation allows for
+all the data to be used in obtaining an estimate. Most commonly one wishes to estimate the accuracy of a classifier in a supervised-learning environment. In such a setting, a certain amount of labeled data is available and one wishes to predict how well a certain classifier would perform if the available data is used to train the classifier and subsequently ask it to label unseen data. Using 10-fold cross-validation one repeatedly uses 90\% of the data to build a model and
+test its accuracy on the remaining 10\%. The resulting average accuracy is likely somewhat of an underestimate for the true accuracy when the model is trained on all data and tested on unseen data, but in most cases this estimate is reliable, particularly if the amount of labeled data is sufficiently large and if the unseen data follows the same distribution as the labeled examples
+
+\section{Timetable }
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figure-2.png}
+    \caption{ Proposed timeline}
+    \label{fig:time}
+\end{figure}
+
+
+The time line for the completion of the project is described on the figure-2.
+
+\section{Discussion}
+
+This research opens doors to a more intuitive and automated method to analyze big data in the context of epidemiology. Reliable forecasts of influenza measures will inform health care practitioners on when to expect changes. Professionals could prepare for surges in influenza cases by developing more efficient vaccines and antiviral treatments and mobilizing essential personnel (such as nurses and doctors).
+
+Deep leaning models are robust, generalizable and scalable. The model automatically learns the most relevant features and takes in account natural variations of the data. The neural net design can be applied for other types of problems in different fields. The performance improves with the amount of data and the possibility to parallelize the method.
+
+DL requires large datasets to run. It tends to learn everything, it means that once information is learned, like the human brain the system becomes bias. It is extremely difficult to understand how DL algorithm reach a specific solution.
+
+In near future, we want to build a simple user interface for the non-expert to visualize and interact with our prediction. The tool will be presented as a client-server model, where all heavy tasks are run by the server. The users will have the possibility to display the results in the form of raw data (table) or transform data (maps, charts or reports).
+
+
+\printbibliography[title={Bibliography},nottype=misc,resetnumbers=true]
+
+\end{document}

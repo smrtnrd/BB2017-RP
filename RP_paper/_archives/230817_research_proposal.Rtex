@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+
+
+ 
+\usepackage{setspace}
+\doublespacing
+
+
+
+\usepackage{url}
+  \let\oldurl\url
+
+\title{Research proposal : A deep learning approach for forcasting the global spread influenza }
+\author{Berthin Bitja}
+\date{ 30/08/17}
+
+\usepackage[
+style=nature,
+date=year,
+backend=biber,
+natbib=true,
+doi=false,
+defernumbers=true
+]{biblatex}
+
+\addbibresource{bib-influenza.bib}
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Background}
+Influenza is a recurrent public health problem. The virus infects approximately 5 to 10 \% of the global adult population and 20 to 30 \% of children every year causing respiratory illness and complications \cite{Eu2010}. In Canada, the total cost of each influenza season is estimated to 1 billion per year \cite{MOLINARI20075086}.One particularity of influenza virus is its high virulence trough antigenic drift and shift, which every year produce new variants that could potentially lead to epidemic outbreaks. Immunization programs have been developed by public health agencies and government to reduce the effects of the circulating strains by preventing infection and widespread transmission\cite{Ting_undated-hh}. 
+
+In order for those program to be efficient predictive approaches have been developed: time series models, method of analogs, compartmental models, agent-based models or metapopulation models\autocite{I518}. For instance, "GLEaMviz" is a publicly available software that simulates the spread of emerging human-to-human infectious diseases across the world. The simulation engine benefit uses a stochastic computational scheme that integrates worldwide high-resolution demographic and mobility data to simulate disease spread on the global scale. The detailed mobility networks used in GLEaMviz design can enable reliable description of the diffusion pattern of the ongoing epidemicautocite{Broeck2011}. This model have been used to check the performance of diverse measures for controlling influenza epidemics. One major difficulty in applying these models is the confined assumptions under which they operate, combined with our limitations in understanding the modeling of human behavior.  Although, this model provides relevant knowledge on influenza spreads, producing reliable predictions during an outbreak remains a challenge.
+
+Disease transmission is a complex spatio-temporal process. Conventional approaches are not adequate to capture such complex, dynamic patterns. Deep learning (DL) offers a novel approach to resolve prediction problems by enabling  computational models that are composed of multiple processing layers based on neural networks to learn representations of data with multiple levels of abstraction\autocite{LECON20150528, Miotto2017}. Those black boxes lowers the need for feature engineering considering that features are learned from data using an unsupervised learning procedure. Despite, being used in various field such as speech recognition,
+visual object recognition, object detection, drug discovery and genomics, there are no publicly available tools implementing  these algorithms for the forecasting of influenza outbreaks.
+
+\section{Objectives}
+The goal of this project is to build a computational tool to predict influenza outbreak  at the local, regional, national, or global level. The main aims of this research are (i) to design the architecture of a deep neural network integrating geographic data, mobility data, genomic data and environmental data to predict common epidemic measures including trend, duration, peak timing, peak height, and magnitude \autocite{I518}, (ii) to develop a pipeline to automate the process of data collection, (iii) to assess the sensitivity and accuracy our method, (iv) to provide for non-expert a user-friendly GUI to manipulate and visualize the data. The motivation of this research is to expand the knowledge on predictive methods based on DL approach for surveillance and forecasting of infectious diseases and explores the relevance of using DL in application to influenza. 
+
+\section{Methodology}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figure-1.png}
+    \caption{ Illustration of the Proposed Methodology}
+    \label{fig:mesh1}
+\end{figure}
+
+To achieve the objectives stated above, our research is divided into four parts: the first part is achieved by creatting an architecture that combine Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN). CNN enable us to automatically extract feature from the data. RNN is a class of neural network suitable for time series data.By merging the two approaches we hope to obtain a reliable autonomous system, which doesn't need the features to be design ahead of time with the ability to have a broader perspective on patterns in the data, thus providing better prediction.
+
+The second part is achieved by exploring the different type of datasets. Then, we will create a pipeline to preprocess the data before feeding it to our system. The challenge for this step is often to find public database that facilitate the access to their data .
+
+To achieve our third objectives. We will compare the predictions obtain from our model with existing published tool, to see which perform best. If possible, we will perform a sensitivity analysis to determine which input parameter is more important or sensible to achieve accurate prediction. This can be used as a feedback information during the preprocessing step. 
+
+Finally, we will build a simple user interface for non-expert to visualize and interact with our prediction. The tool will be presented as an client-server model, where all heavy tasks are run by the server. The users will have the possibility to display the results in the form of raw data (table) or transform data ( maps, charts or reports).
+
+\subsection{Convolutional neural networks }
+DCN is a training process where good features could be automatically learned from input data. CNN mainly consists of several parts: 1) the convolution process, where a convolution filter is applied on the input data (in a format of matrix) in order to amplify the feature signal and reduce the noise; 2) the pooling process, which extracts features that represent geographic, mobility, genomic  and environmental characteristics during a specific period; and 3) the training and testing process, where the learned features are used as input to predict influenza outbreak.
+
+\subsection{Recurrent neural networks }
+ RNNs are a class type of neural network designed for sequence problems. RNNs are adding feedback and memory to the networks over time. In our architecture it will receive inputs from our CNN that allows the network to learn and generalize across sequences of inputs rather than individual patterns. Predictions are made on a broader pool of past observations and validated with current observations, the process is repeated as the time window moves forward.
+
+\subsection{Sensitivity Analysis}
+Sensitivity analysis studies how the variation in the output of a mathematical model can be apportioned to different sources of variation in the input of a model\autocite{Yao2003-wm}. It is a technique that systematically changes model parameters to determine the effects of such changes. The basic principle is that experimenting with a wide range of values gives insight into the behavior of a system in extreme situations, and can lead to identification of parameters whose specific value can significantly influence the behavior of the model.
+
+\section{Data}
+
+\subsection{Influenza data}
+
+The Influenza Virus Database\autocite{IVD-fb} contains nucleotide sequences of all influenza viruses in the EMBL/DDBJ/GenBank databases\autocite{Benson2012-km}, as well as protein sequences and their encoding regions derived from the nucleotide sequences. The influenza database is updated, usually within a day or two, after new sequences become available or older sequence records are updated in GenBank. BLAST searches are performed for all new sequences against the influenza virus sequences in GenBank to verify critical information such as subtype, segment, and year. Information that is not available in GenBank records is obtained from the literature, through direct contact with sequence submitters, or by sequence analysis whenever possible\autocite{Bao2008-io}.
+
+\subsection{Environmental data}
+
+Global Surface Summary of the Day (GSOD)\autocite{GSOD-iw} data is derived from The Integrated Surface Hourly (ISH) dataset. The ISH dataset gathers global data from the USAF Combat Climatology Center, located in the Federal Climate Complex with the National Climatic Data Center (NCDC).  The earliest data recorded start at 1929. Over 9000, stations' data are typically available. The parameters included in the dataset are: Mean temperature, Mean dew point, Mean sea level pressure, Mean station pressure, Mean visibility, Mean wind speed, Maximum sustained wind speed , Maximum wind gust, Maximum temperature, Minimum temperature, Precipitation amount and Snow depth.
+
+\subsection{Epidemic data}
+FluNet is a global tool for influenza virological surveillance launched in 1997  by WHO's Global Influenza Surveillance and Response System (GISRS). The virological data entered into include the Influenza-Like Country, area or territory, Illness (ILI) activity, time and number of influenza viruses detected by subtype. The data  are publically available and updated weekly by National Influenza Centres (NICs).
+
+\subsection{Mobility data}
+The Bureau of Transportation Statistics provide air traffic data on international market. The database include such as carrier, origin, destination, aircraft type and service class for transported passengers, freight and mail, available capacity, scheduled departures and departures performed. Flights with both origin and destination in a country outside the U.S are not included.
+
+\section{Timeline}
+
+%You can type R commands in your \LaTeX{} document and they will be properly run and the output printed in the document.
+ 
+%<<>>=
+%# Create a sequence of numbers
+%X = 2:10
+ 
+%# Display basic statistical measures
+%summary(X)
+ 
+%@
+
+The time line for the completion of the project is described on the figure 1.
+
+\section{Future directions}
+This research open doors to a more intuitive an automated method to analyze big data in the context of epidemiology. The system will take of real time data to update its forecast. It will allow agencies and pharmaceutical companies to have a better timing to produce vaccine virus as well as further improve vaccine strain selection process and, thereby, enhance vaccine efficacy.
+
+
+
+\medskip
+\printbibliography[title={Bibliography},nottype=misc,resetnumbers=true]
+
+\end{document}
