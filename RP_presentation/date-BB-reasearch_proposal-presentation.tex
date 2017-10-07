@@ -1,15 +1,3 @@
-% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
-%
-% In principle, this file can be redistributed and/or modified under
-% the terms of the GNU Public License, version 2.
-%
-% However, this file is supposed to be a template to be modified
-% for your own needs. For this reason, if you use this file as a
-% template and not specifically distribute it as part of a another
-% package/program, I grant the extra permission to freely copy and
-% modify this file as you see fit and even to delete this copyright
-% notice. 
-
 \documentclass{beamer}
 \graphicspath{{_img/}} %Folder with img
 
@@ -51,7 +39,7 @@
 % A subtitle is optional and this may be deleted
 %\subtitle{Optional Subtitle}
 
-\author{B.~Bitja\inst{1}}
+\author{Berthin ~Bitja\inst{1}}
 % - Give the names in the same order as the appear in the paper.
 % - Use the \inst{?} command only if the authors have different
 %   affiliation.
@@ -59,16 +47,18 @@
 \institute[Universities of Ottawa] % (optional, but mostly needed)
 {
   \inst{1}%
+  Supervisor : Prof. Stephane Arris-Brossou \\
   Department of Biology\\
   University of Ottawa
-  \and
-  \inst{2}%
-  Department of Theoretical Philosophy\\
-  University of Elsewhere}
+%  \and
+%  \inst{2}%
+%  Department of Theoretical Philosophy\\
+%  University of Elsewhere
+}
 % - Use the \inst command only if there are several affiliations.
 % - Keep it simple, no one is interested in your street address.
 
-\date{Research Proposal, 2017}
+\date{TAC - Meeting, 2017}
 % - Either use conference name or its abbreviation.
 % - Not really informative to the audience, more for people (including
 %   yourself) who are reading the slides online
@@ -89,7 +79,10 @@
 \AtBeginSubsection[]
 {
   \begin{frame}<beamer>{Outline}
-    \tableofcontents[Introduction,Context, Goal, Mehodology, Timeline]
+    \tableofcontents[currentsection,currentsubsection, 
+    hideothersubsections, 
+    sectionstyle=show/shaded,
+]
   \end{frame}
 }
 
@@ -107,138 +100,236 @@
 
 % Section and subsections will appear in the presentation overview
 % and table of contents.
-\section{Background}
+\section{Introduction}
+\subsection*{Influenza}
 
-\subsection{Influenza forecasting methods}
+\begin{frame}{Influenza}{Overview}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{influenza.jpg}
 
-\begin{frame}{Background}{Influenza forecasting methods}
-  \begin{itemize}
-  \item {
-    Time Series Model.
-  }
-  \item {
-    Compartmental Model.
-  }
-   \item {
-    Agent Based Model.
-  }
-  \item {
-    Metapopulation Model.
-  }
-  \end{itemize}
+\end{figure}
+
+{\tiny \textbf{credit :} http://what-when-how.com/wp-content/uploads/2012/05/tmpBC35.jpg \par}
 \end{frame}
 
-\subsection{Deep Learning}
+\section{Background}
+\subsection*{Influenza forecasting methods}
 
-% You can reveal the parts of a slide one at a time
-% with the \pause command:
-\begin{frame}{Deep Learning}
+\begin{frame}{Background}{Influenza forecasting methods}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{forcasting.png}
+\end{figure}
+{\tiny \textbf{credit :} http://onlinelibrary.wiley.com/doi/10.1111/irv.12226/fullirv12226-fig-0001 \par}
+
+\end{frame}
+
+\subsection*{Deep Learning}
+
+\begin{frame}{Deep Learning}{}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{neurons-1.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Deep Learning}{}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{dl-architecture.png}
+\end{figure}
+
+{\tiny \textbf{credit :} https://hackernoon.com/log-analytics-with-deep-learning-and-machine-learning-20a1891ff70e \par}
+
+\end{frame}
+
+\section{Objectives}
+
+\begin{frame}{Research questions}
+
+The goal of this thesis is to assess if Deep Learning approaches produce good prediction for influenza activities.
+\pause
   \begin{itemize}
-  \item {
-    First item.
-    \pause % The slide will pause after showing the first item
+  
+  \item<2-> {
+ Design the architecture of a neural network
+
   }
-  \item {   
-    Second item.
+  \item<3-> {   
+Pipeline to automate the data retrieval process
   }
   % You can also specify when the content should appear
   % by using <n->:
-  \item<3-> {
-    Third item.
-  }
   \item<4-> {
-    Fourth item.
+Asses the overall performance 
   }
+
   % or you can use the \uncover command to reveal general
   % content (not just \items):
-  \item<5-> {
-    Fifth item. \uncover<6->{Extra text in the fifth item.}
-  }
+ 
   \end{itemize}
+  
+
 \end{frame}
 
-\begin{frame}{Recurrent Neural Network}{}
+
+%\begin{block}{Block Title}
+%You can also highlight sections of your presentation in %a block, with it's own title
+%\end{block}
+%\begin{theorem}
+%There are separate environments for theorems, examples, %definitions and proofs.
+%\end{theorem}
+%\begin{example}
+%Here is an example of an example block.
+%\end{example}
+
+
+\section{Methodology}
+\begin{frame}{Methodology}{}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{figure-3.png}
-    \caption{ \textbf{An unrolled recurrent neural network.} The artificial neurons (for example, hidden units grouped under node s with values $s_t$ at time t) get inputs from other neurons at previous time steps. In this way, a recurrent neural network can map an input sequence with elements $s_t$ into an output sequence with elements $o_t$, with each $o_t$ depending on all the previous $p'_t$ (for $t'\leq t$). The same parameters (matrices $U,V,W$ ) are used at each time step. }
-    \label{fig:RNN}
+    \includegraphics[width=\textwidth]{figure-1.png}
 \end{figure}
 
 \end{frame}
-\section{Second Main Section}
 
-\subsection{Another Subsection}
+\subsection*{Data acquisition}
+\begin{frame}{Data acquisition}{Dataset}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{data-aquisition-1.png}
 
-\begin{frame}{Blocks}
-\begin{block}{Block Title}
-You can also highlight sections of your presentation in a block, with it's own title
-\end{block}
-\begin{theorem}
-There are separate environments for theorems, examples, definitions and proofs.
-\end{theorem}
-\begin{example}
-Here is an example of an example block.
-\end{example}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Data acquisition}{Preprocessing}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{data-aquisition-2.png}
+ 
+\end{figure}
+\end{frame}
+
+\subsection*{Convolutional Neural Networks}
+\begin{frame}{Convolutional Neural Networks}{}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{cnn-1.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Convolutional Neural Networks}{}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{cnn-2.png}
+\end{figure}
+\end{frame}
+
+\subsection*{Reccurent Neural Networks}
+\begin{frame}{Recurrent Neural Network}{}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{rnn-2.png}
+\end{figure}
+\end{frame}
+
+\subsection*{Training and Implementation}
+
+
+
+\begin{frame}{Training and Implementation}{}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{training.png}
+\end{figure}
+{\tiny \textbf{credit :}http://adilmoujahid.com/images/machine-learning-training-prediction-2.png \par}
+\end{frame}
+
+\begin{frame}{Training and Implementation}{Gradient Descent}
+
+\begin{columns}
+
+\begin{column}[t]{0.48\textwidth}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{gd-1.png}
+\end{figure}
+
+\end{column}
+
+\begin{column}[t]{0.48\textwidth}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{gd-2.png}
+\end{figure}
+\end{column}
+
+\end{columns}
+\end{frame}
+
+
+
+\begin{frame}{Training and Implementation}{Tensorflow}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{tensorflow.jpg}
+\end{figure}
+{\tiny \textbf{credit :}https://image.slidesharecdn.com/iispublic-160102031649/95/google-tensorflow-tutorial-4-638.jpg?cb=1451704817 \par}
+\end{frame}
+
+
+\section{Timeline}
+
+\begin{frame}{Timeline}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figure-2.png}
+\end{figure}
 \end{frame}
 
 % Placing a * after \section means it will not show in the
 % outline or table of contents.
 \section*{Summary}
-
 \begin{frame}{Summary}
-  \begin{itemize}
-  \item
-    The \alert{first main message} of your talk in one or two lines.
-  \item
-    The \alert{second main message} of your talk in one or two lines.
-  \item
-    Perhaps a \alert{third message}, but not more than that.
-  \end{itemize}
-  
-  \begin{itemize}
-  \item
-    Outlook
-    \begin{itemize}
-    \item
-      Something you haven't solved.
-    \item
-      Something else you haven't solved.
-    \end{itemize}
-  \end{itemize}
+
+The motivation of this research is to expand the knowledge on predictive methods based on DL approaches for surveillance and forecasting of infectious diseases and explores the relevance of using DL in application to influenza forecasting
 \end{frame}
 
 
 
 % All of the following is optional and typically not needed. 
-\appendix
-\section<presentation>*{\appendixname}
-\subsection<presentation>*{For Further Reading}
+% \appendix
+% \section<presentation>*{\appendixname}
+% \subsection<presentation>*{For Further Reading}
 
-\begin{frame}[allowframebreaks]
-  \frametitle<presentation>{For Further Reading}
+% \begin{frame}[allowframebreaks]
+% \frametitle<presentation>{For Further Reading}
     
-  \begin{thebibliography}{10}
+%  \begin{thebibliography}{10}
     
-  \beamertemplatebookbibitems
+%  \beamertemplatebookbibitems
   % Start with overview books.
 
-  \bibitem{Author1990}
-    A.~Author.
-    \newblock {\em Handbook of Everything}.
-    \newblock Some Press, 1990.
+%  \bibitem{Author1990}
+%    A.~Author.
+%    \newblock {\em Handbook of Everything}.
+%    \newblock Some Press, 1990.
  
     
-  \beamertemplatearticlebibitems
+%  \beamertemplatearticlebibitems
   % Followed by interesting articles. Keep the list short. 
 
-  \bibitem{Someone2000}
-    S.~Someone.
-    \newblock On this and that.
-    \newblock {\em Journal of This and That}, 2(1):50--100,
-    2000.
-  \end{thebibliography}
-\end{frame}
+%  \bibitem{Someone2000}
+%    S.~Someone.
+%    \newblock On this and that.
+%    \newblock {\em Journal of This and That}, 2(1):50--100,2000.
+%  \end{thebibliography}
+%\end{frame}
 
 \end{document}
 

@@ -106,7 +106,14 @@ CNN are a type of neural networks specialized for processing data  that has know
 
 A typical CNN architecture contains :
 \begin{itemize}
-\item \textbf{Input layer} that holds the raw values of the data, in our case the representation of influenza over 360° of longitude (as width),  and 180° of latitude (as height), and with features representing our channels.
+\begin{frame}{4 images}
+\begin{columns}[t]
+\column{.5\textwidth}
+\img{a}\img{b}
+\column{.5\textwidth}
+\img{1x1}\img{c}
+\end{columns}
+\end{framekgroun\item \textbf{Input layer} that holds the raw values of the data, in our case the representation of influenza over 360° of longitude (as width),  and 180° of latitude (as height), and with features representing our channels.
 \item \textbf{Convolutional layer} that computes the output of neurons that are connected to local regions in the input. 
 \item \textbf{ReLU layer} applies an elementwise activation function, such as the $max(0,x)max(0,x)$ thresholding at zero.
 \item \textbf{Pooling layer} performs a downsampling operation along the spatial dimensions (width, height), resulting in a smaller volume.
